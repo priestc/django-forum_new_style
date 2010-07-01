@@ -145,7 +145,7 @@ class AllPostFeed(GenericPostFeed):
         Return the last 20 threads made in any forum,
         sorted by op creation date
         """
-        return Post.objects.select_related()[:20]
+        return Post.objects.select_related().order_by('-posted_time')[:20]
                       
         
     def title(self, obj):
