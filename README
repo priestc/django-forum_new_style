@@ -20,7 +20,8 @@ Go to the admin (http://localhost:8000/admin) and add them there.
 
 requirements:
 =============
-
+django 1.2 - this app utilizes the new API for feeds introduced in 1.2
+python 2.4
 django.conrib.auth - for user accounts
 recaptcha-client - for recaptcha usage (optional)
 
