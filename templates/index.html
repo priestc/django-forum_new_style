@@ -1,3 +1,14 @@
+{% endcomment %}
+    the following should be added to the <head> of any page that displays
+    this forum index:
+    
+    {% load forum_tags %}
+    {% rss_markup 'all' 'threads' %}
+    {% rss_markup 'all' 'posts' %}
+    
+    they tell the browser where to find the rss feeds
+{% endcomment %}
+
 <h1>Forum Index</h1>
 <table style="width: 100%; background: #dfdfdf; border: 1px solid black; margin: 10px 0 0 0">
     <tr>

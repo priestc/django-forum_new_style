@@ -1,3 +1,14 @@
+{% endcomment %}
+    the following should be added to the <head> of any page that displays
+    any forum thread list:
+    
+    {% load forum_tags %}
+    {% rss_markup forum 'threads' %}
+    {% rss_markup forum 'posts' %}
+    
+    they tell the browser where to find the rss feeds
+{% endcomment %}
+
 <h1>
 <a href="{% url forum:index %}">Index</a> >
 {{ forum.name }}

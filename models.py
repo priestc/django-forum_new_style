@@ -62,6 +62,8 @@ class Forum(models.Model):
 class Thread(models.Model):
     forum = models.ForeignKey(Forum)
     title = models.CharField(max_length=64)
+    is_locked = models.BooleanField(default=False)
+    is_sticky = models.BooleanField(default=False)
     
     def get_absolute_url(self):
         slug = '-' + slugify(self.title)
@@ -73,6 +75,7 @@ class Thread(models.Model):
     def post_count(self):
         return self.post_set.count()
     
+    @property
     def op(self):
         """
         Return the first post in this thread
@@ -84,7 +87,6 @@ class Thread(models.Model):
             return Post()
                
         return op[0]
-    op = property(op)
     
     def last_bumped(self):
         """
