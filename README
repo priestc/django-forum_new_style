@@ -1,0 +1,62 @@
+installation:
+=============
+
+Add to python path, and then add to INSTALLED_APPS in settings.py
+run "manage.py syncdb"
+
+add the following to your urls.py file:
+
+(r'^forum/', include('forum_new_style', namespace='forum', app_name='forum'))
+
+also, add the following setting:
+
+FORUM_OVERALL_NAME = "My Forum"
+
+Adding forums:
+==============
+
+Go to the admin (http://localhost:8000/admin) and click on Forums.
+
+Add the name of the forums you want, plus an (optional) aditional description.
+
+
+To use recaptcha:
+=================
+
+first add the following settings:
+
+FORUM_USE_RECAPTCHA = True
+RECAPTCHA_PRIVATE_KEY = 'xxxxx'
+RECAPTCHA_PUBLIC_KEY = 'xxxxx'
+
+and also install the recaptcha-client python package.
+
+Now unregistered users can only make posts on your forum once they've passed
+the recaptcha test.
+
+Things to consider when making post templates:
+==============================================
+
+The system uses the microseconds in the post time to verify that the post
+is being deleted by a user that is qualified to delete that post. It is
+recommended to not format post dates to include the microseconds value.
+
+
+Features of this project in a nutshelll:
+========================================
+
+1. very easy setup
+2. anonymous posting is allowed
+3. unregistered users can make posts
+4. unregistered and anonymous users can also delete their own posts
+5. Recaptcha integration for unregistered users
+6. RSS feeds for every forum and every thread. Feeds of posts and threads available.
+7. Completely customizable interface using the django template language
+
+
+features that this projct does not have but will maybe someday get:
+===================================================================
+
+1. support for threading
+2. editing posts
+3. ban users from just the forum
