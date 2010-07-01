@@ -88,9 +88,16 @@ class Thread(models.Model):
                
         return op[0]
     
+    def last_post(self):
+        """
+        Returns the last post was made in this thread
+        """
+    
+        return self.post_set.order_by('-posted_time')[0]
+    
     def last_bumped(self):
         """
-        Returs a datetime object of when the last post was made in this thread
+        Returns a datetime object of when the last post was made in this thread
         """
 
         try:
