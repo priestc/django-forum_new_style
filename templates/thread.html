@@ -1,9 +1,4 @@
-{% extends "base.html" %}
 {% load forum_tags %}
-
-{% block title%}{{ thread.title }}{% endblock %}
-
-{% block canvas %}
 
 <h1>
 <a href="{% url forum:index %}">Index</a> >
@@ -22,5 +17,3 @@
 {% endfor %}
 
 {{ new_form }}
-
-{% endblock %}
