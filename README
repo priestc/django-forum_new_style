@@ -1,4 +1,4 @@
-installation:
+4nstallation:
 =============
 
 Add to python path, and then add to INSTALLED_APPS in settings.py
@@ -6,40 +6,45 @@ run "manage.py syncdb"
 
 add the following to your urls.py file:
 
-(r'^forum/', include('forum_new_style', namespace='forum', app_name='forum'))
+    (r'^forum/', include('forum_new_style', namespace='forum', app_name='forum'))
 
-also, add the following setting:
+also, add the following to your settings:
 
-FORUM_OVERALL_NAME = "My Forum"
+    from forums_new_style.settings import *
+    FORUM_OVERALL_NAME = "My Forum"
 
 Adding forums:
 ==============
 
-Go to the admin (http://localhost:8000/admin) and click on Forums.
+Go to the admin (http://localhost:8000/admin) and add them there.
 
-Add the name of the forums you want, plus an (optional) aditional description.
+requirements:
+=============
 
+django.conrib.auth - for user accounts
+recaptcha-client - for recaptcha usage (optional)
 
 To use recaptcha:
 =================
 
-first add the following settings:
+first add the following after the import line in your settings file:
 
 FORUM_USE_RECAPTCHA = True
 RECAPTCHA_PRIVATE_KEY = 'xxxxx'
 RECAPTCHA_PUBLIC_KEY = 'xxxxx'
 
-and also install the recaptcha-client python package.
+and also make sure to install the recaptcha-client python package.
 
 Now unregistered users can only make posts on your forum once they've passed
-the recaptcha test.
+the recaptcha test. This useful in preventing spambots.
 
 Things to consider when making post templates:
 ==============================================
 
 The system uses the microseconds in the post time to verify that the post
 is being deleted by a user that is qualified to delete that post. It is
-recommended to not format post dates to include the microseconds value.
+recommended to not format post dates to include the microseconds value. This
+could allow users to delete posts without proper authorization.
 
 
 Features of this project in a nutshelll:
@@ -59,4 +64,6 @@ features that this projct does not have but will maybe someday get:
 
 1. support for threading
 2. editing posts
-3. ban users from just the forum
+3. locking threads
+4. ban users from just the forum (i.e banning without deleting the account 
+   wuth contrib.auth)
